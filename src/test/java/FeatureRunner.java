@@ -1,0 +1,34 @@
+import com.intuit.karate.Results;
+import com.intuit.karate.Runner;
+import com.intuit.karate.junit5.Karate;
+import org.junit.jupiter.api.Test;
+
+
+
+public class FeatureRunner {
+
+    @Karate.Test
+    Karate metaWeatherTest(){
+        return new Karate().tags("@meta_weather").relativeTo(getClass());
+    }
+
+    @Karate.Test
+    Karate harryPotterTest(){
+        return new Karate().tags("@OMDB").relativeTo(getClass());
+    }
+
+    @Karate.Test
+    Karate metaWeatherTest2(){
+        return new Karate().tags("@meta_weather2").relativeTo(getClass());
+    }
+
+    @Karate.Test
+    Karate BookitTest1(){
+        return new Karate().tags("@bookit").relativeTo(getClass());
+    }
+
+    @Test
+    void testParallel() {
+        Results results = Runner.path("classpath:features").parallel(8);
+    }
+}
